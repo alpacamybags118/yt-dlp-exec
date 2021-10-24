@@ -4,7 +4,7 @@ const execa = require('execa');
 const path = require('path');
 
 
-const pathToBinary = path.join(path.join(__dirname,'../bin'), 'yt-dlp.exe')
+const pathToBinary = path.join(path.join(__dirname,'../bin'), binary)
 
 /**
  * Takes media URL and options for invoking yt-dlp and formats them in a string array.
