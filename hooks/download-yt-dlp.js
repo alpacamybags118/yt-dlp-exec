@@ -1,7 +1,7 @@
 const fetch = require('node-fetch');
 const fs = require('fs');
 const path = require('path');
-const { getBinaryName } = require('../src/helpers');
+const { getBinaryName, setYtBinaryPermissions } = require('../src/helpers');
 
 const baseDownloadUrl = 'https://github.com/yt-dlp/yt-dlp/releases/download';
 const releasesUrl = 'https://api.github.com/repos/yt-dlp/yt-dlp/releases'
@@ -21,8 +21,13 @@ async function getYtDlpRelease() {
   
   return fetch(finalDownloadUrl)
     .then((data) => {
-      const destFile = fs.createWriteStream(path.join(binaryFolderPath,`/${binary}`));
+      const filePath = path.join(binaryFolderPath,`/${binary}`);
+      const destFile = fs.createWriteStream(filePath);
       data.body.pipe(destFile);
+
+      destFile.on('finish', () => {
+        setYtBinaryPermissions(filePath);
+      });
     })
 }
 
