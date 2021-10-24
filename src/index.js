@@ -2,9 +2,10 @@
 const dargs = require('dargs');
 const execa = require('execa');
 const path = require('path');
+const { getBinaryName } = require('./helpers');
 
 
-const pathToBinary = path.join(path.join(__dirname,'../bin'), binary)
+const pathToBinary = path.join(path.join(__dirname,'../bin'), getBinaryName())
 
 /**
  * Takes media URL and options for invoking yt-dlp and formats them in a string array.
