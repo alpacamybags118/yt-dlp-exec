@@ -19,7 +19,7 @@ npm install yt-dlp-exec
 
 ## Javascript
 ```javascript
-const yt = require('yt-dlp-exec');
+const yt = require('@alpacamybags118/yt-dlp-exec');
 
 const result = yt.createYtDlpAsProcess('https://some.url', {
   f: 'bestaudio',
@@ -33,7 +33,7 @@ result.on('exit', (exit) => {
 
 ## Typescript
 ```ts
-import createYtDlpAsProcess from 'yt-dlp-exec'
+import createYtDlpAsProcess from '@alpacamybags118/yt-dlp-exec'
 
 const process = createYtDlpAsProcess(
 				'https://some.url',
