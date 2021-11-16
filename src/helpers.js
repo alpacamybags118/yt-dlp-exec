@@ -12,7 +12,7 @@ function getBinaryName() {
 function setYtBinaryPermissions(path) {
   console.log(path);
   if (process.platform !== 'win32') {
-    fs.chmodSync(path, 755);
+    fs.chmodSync(path, 0o755);
   }
 }
 
