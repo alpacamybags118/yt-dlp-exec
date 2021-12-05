@@ -1,5 +1,4 @@
 const yt = require('../src/index');
-let execa = require('execa');
 const ChildProcess = require('child_process').ChildProcess;
 
 describe('createYtDlpAsProcess', () => {
@@ -14,9 +13,25 @@ describe('createYtDlpAsProcess', () => {
   });
 
   test('should return a child process when invoked', async () => {
-    const process = yt.createYtDlpAsProcess('test', {h:true});
+    const process = yt.createYtDlpAsProcess('./bin/yt-dlp', {h:true});
 
     expect(process).toBeInstanceOf(ChildProcess);
-    expect(async () => await process).toBeTruthy();
+
+    const result = await process;
+    expect(result.exitCode).toBe(0);
+    expect(result.stdout).toBeTruthy();
+    expect(result.stderr).toBeFalsy();
+  });
+
+  test('should be able to provide custom process options', async () => {
+    const process = yt.createYtDlpAsProcess('./bin/yt-dlp', {garbage: true}, { stdio: ['pipe', 'pipe', 'pipe'], reject: false });
+
+    expect(process).toBeInstanceOf(ChildProcess);
+
+    const result = await process;
+    
+    expect(result.exitCode).not.toBe(0);
+    expect(result.stdout).toBeFalsy();
+    expect(result.stderr).toBeTruthy();
   });
 })
