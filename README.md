@@ -47,4 +47,19 @@ const process = createYtDlpAsProcess(
 );
 ```
 
+You can also pass custom process options (in `execa` format: see https://github.com/sindresorhus/execa) for more control over settings such as stdio.
+
+```javascript
+const yt = require('@alpacamybags118/yt-dlp-exec');
+
+const result = yt.createYtDlpAsProcess('https://some.url', {
+  f: 'bestaudio',
+  preferFreeFormats: true,
+}, { stdio: ['pipe', 'pipe', 'pipe'] });
+
+result.on('exit', (exit) => {
+  console.log(exit);
+})
+```
+
 Argument list fo commands uses [`dargs`](https://github.com/sindresorhus/dargs) formatting. Returned child process is in [`execa`](https://github.com/sindresorhus/execa) format

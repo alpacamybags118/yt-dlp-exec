@@ -4,6 +4,7 @@
 name: Node.js Package
 
 on:
+  pull_request:
   release:
     types: [created]
 
@@ -21,6 +22,7 @@ jobs:
   publish-npm:
     needs: build
     runs-on: ubuntu-latest
+    if: github.event_name == 'release'
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -35,6 +37,7 @@ jobs:
   publish-gpr:
     needs: build
     runs-on: ubuntu-latest
+    if: github.event_name == 'release'
     permissions:
       contents: read
       packages: write

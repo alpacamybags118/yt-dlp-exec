@@ -1,6 +1,6 @@
 {
   "name": "@alpacamybags118/yt-dlp-exec",
-  "version": "0.0.7",
+  "version": "0.1.0",
   "description": "Wrapper around yp-dlp to execute it as a process in your project.",
   "main": "src/index.js",
   "scripts": {
@@ -20,6 +20,6 @@
     "node": ">= 12"
   },
   "devDependencies": {
-    "jest": "^27.3.1"
+    "jest": "^27.4.3"
   }
 }
